@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Anggota</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo-title">
+            <img src="image/logo.png" alt="Logo" style="width: 100px; height: auto;">
+            <h1>Daftar Anggota</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" id="cari-pemain" onkeyup="cariPemain()" placeholder="Cari nama Anggo..." style="width: 200px;">
+            <select id="filter-gelar" onchange="cariPemain()">
+                <option value="">Semua Gelar</option>
+                <option value="Pemimpin">Pemimpin</option>
+                <option value="Ketua">Ketua</option>
+                <option value="Tanpa Gelar">Tanpa Gelar</option>
+            </select>
+        </div>
+    </div>
+
+    <ul id="daftar-pemain">
+        <li>TOMAS Y <span class="label" style="color: #ff004cf3; font-weight: bold;">Ketua</span></li>
+        <li>MAWAR K</li>
+        <li>YANCE AGAPA</li>
+        <li>SANDRI T</li>
+        <li>SELSYA</li>
+        <li>DENI</li>
+        <li>ARI</li>
+        <li>SEMUEL</li>
+        <li>TIA TERA</li>
+        <li>BINTANG</li>
+        <li>Rufus P. Fufuratu <span class="label" style="color: #ff004cf3; font-weight: bold;">Pemimpin</span></li>
+        <li>R.Fufuratu</li>
+        <li>ROWITA CELSI FALLO <span class="label" style="color: #ff004cf3; font-weight: bold;">Ketua</span></li>
+        <li>GUSTI ALVONIO FALLO</li>
+        <li>METUSALAH SISILIA WENDA</li>
+        <li>MANSAR URBON <span class="label" style="color: #ff004cf3; font-weight: bold;">Ketua</span></li>
+        <li>ENJELITA MARA</li>
+        <li>JOICE N. RUMAROPEN</li>
+        <li>SYARMILA LAGA</li>
+        <li>NATAN SABA</li>
+        <li>BARNABAS INARKOMBU</li>
+        <li>ANES SABA</li>
+        <li>PETRUS WAMATI</li>
+        <li>ALBERTO YAMKO</li>
+        <li>JAMILA LAGA</li>
+        <li>Irfan Wtn <span class="label" style="color: #ff004cf3; font-weight: bold;">Ketua</span></li>
+        <li>Wili Dou</li>
+    </ul>
+
+    <script>
+        function cariPemain() {
+            let input, filter, ul, li, i, txtValue, filterGelar;
+            input = document.getElementById('cari-pemain');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("daftar-pemain");
+            li = ul.getElementsByTagName('li');
+            filterGelar = document.getElementById("filter-gelar").value; // Mendapatkan nilai filter gelar
+
+            for (i = 0; i < li.length; i++) {
+                txtValue = li[i].textContent || li[i].innerText;
+                let gelar = li[i].querySelector('.label')?.textContent || "Tanpa Gelar"; // Mendapatkan gelar atau "Tanpa Gelar"
+
+                if (
+                    (txtValue.toUpperCase().indexOf(filter) > -1) && // Memfilter berdasarkan teks
+                    (filterGelar === "" || gelar === filterGelar) // Memfilter berdasarkan gelar
+                ) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
